@@ -6,8 +6,8 @@ export default function PersonaSelect({ onSelect }) {
       id: 'senior',
       icon: '👵',
       title: 'Sou um sénior',
-      subtitle: 'Quero usar a minha voz.',
-      description: 'Registo a minha tensão, glicose e medicação de forma simples, apenas a falar com a CoreHealth.',
+      subtitle: 'Uso apenas a minha voz.',
+      description: 'Falo com a Cora para registar a minha tensão e glicose, receber lembretes de medicação e ouvir dicas de saúde personalizadas.',
       color: '#A63F52',
       bg: '#FBF0F2',
     },
@@ -15,8 +15,8 @@ export default function PersonaSelect({ onSelect }) {
       id: 'adult',
       icon: '🧑',
       title: 'Gestor de saúde',
-      subtitle: 'Individual ou em família.',
-      description: 'Monitorizo os meus dados e, se desejar, emparelho com outros para acompanhar a saúde de familiares ou amigos.',
+      subtitle: 'Controlo e acompanhamento.',
+      description: 'Gero os meus dados, marco consultas e acompanho quem mais gosto com alertas e notificações em tempo real.',
       color: '#590212',
       bg: '#FBF0F2',
     },
@@ -157,7 +157,7 @@ export default function PersonaSelect({ onSelect }) {
               Sou profissional de saúde.
             </div>
             <div style={{ fontSize: 11, color: 'var(--muted)', lineHeight: 1.5, opacity: 0.8 }}>
-              Acompanho o histórico e os dados partilhados pelos meus pacientes de forma integrada.
+              Analiso o histórico e os sinais vitais partilhados pelos meus pacientes para um acompanhamento preventivo.
             </div>
           </div>
         </button>
