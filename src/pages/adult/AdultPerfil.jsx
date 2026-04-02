@@ -1,10 +1,10 @@
 import StatusBar from '../../components/StatusBar';
 import BottomNavAdult from '../../components/BottomNavAdult';
-import MiniChart from '../../components/MiniChart';
 import { ricardoMedications } from '../../data/mockMedications';
+import { translations } from '../../data/translations';
 
-export default function AdultPerfil({ navigate, onLogout }) {
-  const conditions = ['Historial familiar: Hipertensão'];
+export default function AdultPerfil({ navigate, onLogout, lang = 'pt' }) {
+  const T = translations[lang];
   const wearables = ['Apple Watch', 'Oura Ring'];
 
   return (
@@ -12,11 +12,11 @@ export default function AdultPerfil({ navigate, onLogout }) {
       <StatusBar />
 
       <div style={{ padding: '8px 20px 14px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <div style={{ fontSize: 20, fontWeight: 800, color: 'var(--ink)' }}>O Meu Perfil</div>
+        <div style={{ fontSize: 20, fontWeight: 800, color: 'var(--ink)' }}>{T.adultPerfilTitle}</div>
         <button style={{
           background: 'var(--cream)', border: 'none', borderRadius: 12,
           padding: '8px 14px', fontSize: 13, fontWeight: 600, color: 'var(--wine-md)', cursor: 'pointer',
-        }}>Editar</button>
+        }}>{T.adultPerfilEdit}</button>
       </div>
 
       <div className="scroll-area">
@@ -41,7 +41,7 @@ export default function AdultPerfil({ navigate, onLogout }) {
             </div>
             <div>
               <div style={{ fontSize: 20, fontWeight: 800 }}>Ricardo Santos</div>
-              <div style={{ fontSize: 13, opacity: 0.8, marginTop: 3 }}>32 anos · Lisboa</div>
+              <div style={{ fontSize: 13, opacity: 0.8, marginTop: 3 }}>{lang === 'en' ? '32 years · Lisbon' : '32 anos · Lisboa'}</div>
               <div style={{ fontSize: 12, opacity: 0.7, marginTop: 4 }}>ricardo.santos@email.com</div>
               <div style={{ fontSize: 12, opacity: 0.7 }}>+351 91 234 5678</div>
             </div>
@@ -49,10 +49,10 @@ export default function AdultPerfil({ navigate, onLogout }) {
         </div>
 
         {/* Conditions */}
-        <div className="section-title">Condições de Saúde</div>
+        <div className="section-title">{T.adultPerfilConditions}</div>
         <div style={{ margin: '0 16px 16px', background: '#fff', borderRadius: 20, padding: '16px', border: '1px solid var(--border)' }}>
           <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 10 }}>
-            {['Diabetes Tipo 2 ✗', 'Hipertensão ✗', 'Cardiovascular ✗'].map((c, i) => (
+            {T.adultPerfilConditionTags.map((c, i) => (
               <span key={i} style={{
                 fontSize: 12, fontWeight: 600, padding: '5px 12px', borderRadius: 20,
                 background: i === 0 ? '#fee2e2' : 'var(--cream)', color: i === 0 ? '#dc2626' : 'var(--muted)',
@@ -64,17 +64,15 @@ export default function AdultPerfil({ navigate, onLogout }) {
             ))}
           </div>
           <div style={{ fontSize: 13, color: 'var(--ink)', fontStyle: 'italic', borderTop: '1px solid var(--border-lt)', paddingTop: 10 }}>
-            "Família com historial de pressão alta. Monitorização preventiva."
+            {T.adultPerfilNote}
           </div>
-          {conditions.map((c, i) => (
-            <div key={i} style={{ fontSize: 12, color: 'var(--wine-md)', fontWeight: 600, marginTop: 6 }}>
-              ⚠ {c}
-            </div>
-          ))}
+          <div style={{ fontSize: 12, color: 'var(--wine-md)', fontWeight: 600, marginTop: 6 }}>
+            {T.adultPerfilFamilyHistory}
+          </div>
         </div>
 
         {/* Medications */}
-        <div className="section-title">Medicamentos Activos</div>
+        <div className="section-title">{T.adultPerfilMeds}</div>
         <div style={{ margin: '0 16px 16px' }}>
           {ricardoMedications.map(med => (
             <div key={med.id} style={{
@@ -92,14 +90,14 @@ export default function AdultPerfil({ navigate, onLogout }) {
                 borderRadius: 12, padding: '6px 10px', textAlign: 'center',
               }}>
                 <div style={{ fontSize: 18, fontWeight: 800, color: '#1a7a5a' }}>{med.adherenceStreak}</div>
-                <div style={{ fontSize: 9, color: '#1a7a5a', fontWeight: 600 }}>dias 🔥</div>
+                <div style={{ fontSize: 9, color: '#1a7a5a', fontWeight: 600 }}>{T.adultPerfilDays}</div>
               </div>
             </div>
           ))}
         </div>
 
         {/* Wearables */}
-        <div className="section-title">Dispositivos Ligados</div>
+        <div className="section-title">{T.adultPerfilWearables}</div>
         <div style={{ margin: '0 16px 16px', background: '#fff', borderRadius: 20, padding: '16px', border: '1px solid var(--border)' }}>
           {wearables.map((w, i) => (
             <div key={i} style={{
@@ -110,12 +108,12 @@ export default function AdultPerfil({ navigate, onLogout }) {
               <span style={{ fontSize: 24 }}>{i === 0 ? '⌚' : '💍'}</span>
               <div style={{ flex: 1 }}>
                 <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--ink)' }}>{w}</div>
-                <div style={{ fontSize: 11, color: '#28a878', fontWeight: 600 }}>● Ligado e sincronizado</div>
+                <div style={{ fontSize: 11, color: '#28a878', fontWeight: 600 }}>{T.adultPerfilConnected}</div>
               </div>
               <button style={{
                 background: 'var(--cream)', border: 'none', borderRadius: 10,
                 padding: '6px 12px', fontSize: 12, fontWeight: 600, color: 'var(--muted)', cursor: 'pointer',
-              }}>Gerir</button>
+              }}>{T.adultPerfilManage}</button>
             </div>
           ))}
         </div>
@@ -130,12 +128,12 @@ export default function AdultPerfil({ navigate, onLogout }) {
               color: '#dc2626', cursor: 'pointer',
             }}
           >
-            Sair da Conta
+            {T.adultPerfilLogout}
           </button>
         </div>
       </div>
 
-      <BottomNavAdult active="perfil" navigate={navigate} />
+      <BottomNavAdult active="perfil" navigate={navigate} lang={lang} />
     </div>
   );
 }

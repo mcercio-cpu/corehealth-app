@@ -1,80 +1,30 @@
 import { useState, useEffect, useRef } from 'react';
 import VoiceButton from '../../components/VoiceButton';
+import { translations } from '../../data/translations';
 
-const FLOW_STEPS = [
-  {
-    id: 'welcome',
-    appText: 'Olá, Dona Rosa! Como está hoje?',
-    state: 'listening',
-    icon: '💬',
-  },
-  {
-    id: 'question1',
-    appText: 'Entendo, Dona Rosa. Essa dor... é uma dor forte ou é mais um desconforto? E desde quando tem?',
-    rosaText: 'Estou cansada, tenho dor no peito e sinto-me fraca.',
-    state: 'listening',
-    icon: '💬',
-  },
-  {
-    id: 'question2',
-    appText: 'Dona Rosa, isso é importante. Tomou a medicação para a pressão arterial hoje?',
-    rosaText: 'É uma dor que aperta, começou há 2 dias.',
-    state: 'listening',
-    icon: '💬',
-  },
-  {
-    id: 'question3',
-    appText: 'Dona Rosa, quando foi a última vez que mediu a glicemia? Consegue medir agora comigo?',
-    rosaText: 'Sim, tomei de manhã cedo.',
-    state: 'listening',
-    icon: '💬',
-  },
-  {
-    id: 'processing',
-    appText: 'Deixe-me analisar os seus dados...',
-    rosaText: 'Médico ontem, deu 185.',
-    state: 'processing',
-    icon: '⚙️',
-    record: {
-      sintoma: 'Dor no peito',
-      severidade: 'Moderada-Alta',
-      duracao: '2 dias',
-      medicacao: '✅ Tomada',
-      glicemia: '185 mg/dL ⚠️ ALTA',
-      status: '⚠️ ALERTA MODERADO',
-    },
-  },
-  {
-    id: 'solution',
-    appText: 'Dona Rosa, detectei que a glicemia está um pouco alta e tem dor no peito. Isso é importante. Vou contactar o seu filho Ricardo para ele marcar uma consulta urgente.',
-    state: 'speaking',
-    icon: '💬',
-  },
-  {
-    id: 'confirm',
-    appText: 'Contactei o Ricardo, Dona Rosa. Ele vai marcar uma consulta com cardiologista o mais rapidamente possível. Você fez bem em nos dizer. Descanse.',
-    state: 'success',
-    icon: '✅',
-    alert: {
-      titulo: 'Ricardo alertado!',
-      mensagem: 'Notificação enviada. Ricardo irá marcar consulta urgente.',
-    },
-  },
-];
+export default function SeniorVoiceFlow({ navigate, lang = 'pt' }) {
+  const T = translations[lang];
 
-export default function SeniorVoiceFlow({ navigate }) {
+  const FLOW_STEPS = T.flow.map((f, i) => ({
+    id: `step-${i}`,
+    appText: f.appText,
+    rosaText: f.rosaText,
+    state: i === 4 ? 'processing' : i === 6 ? 'success' : i === 5 ? 'speaking' : 'listening',
+    icon: i === 6 ? '✅' : i === 4 ? '⚙️' : '💬',
+    record: i === 4 ? T.flowRecord : null,
+    alert: i === 6 ? T.flowAlert : null,
+  }));
+
   const [step, setStep] = useState(0);
   const [isListening, setIsListening] = useState(false);
   const [showRosa, setShowRosa] = useState(false);
-  const [transcript, setTranscript] = useState('');
-  const [autoPlay, setAutoPlay] = useState(true);
+  const [autoPlay] = useState(true);
   const timerRef = useRef(null);
 
   const current = FLOW_STEPS[step];
   const isLast = step === FLOW_STEPS.length - 1;
 
   useEffect(() => {
-    // Auto-advance demo mode
     if (!autoPlay) return;
     if (step === 0) {
       timerRef.current = setTimeout(() => {
@@ -92,7 +42,6 @@ export default function SeniorVoiceFlow({ navigate }) {
         setStep(s => s + 1);
         setShowRosa(false);
         setIsListening(false);
-        setTranscript('');
         if (step + 1 < FLOW_STEPS.length - 1) {
           setTimeout(() => setIsListening(true), 1500);
         }
@@ -103,21 +52,9 @@ export default function SeniorVoiceFlow({ navigate }) {
   const handleVoicePress = () => {
     setIsListening(prev => !prev);
     if (!isListening && step < FLOW_STEPS.length - 2) {
-      // Simulate listening for 2s then advance
-      setTimeout(() => {
-        handleNext();
-      }, 2000);
+      setTimeout(() => { handleNext(); }, 2000);
     }
   };
-
-  const stateColors = {
-    listening: 'var(--wine-md)',
-    speaking: 'var(--wine)',
-    processing: '#F5A623',
-    success: '#28a878',
-  };
-
-  const stateColor = stateColors[current.state] || 'var(--wine-md)';
 
   return (
     <div className="screen" style={{ background: 'var(--cream-lt)' }}>
@@ -136,12 +73,11 @@ export default function SeniorVoiceFlow({ navigate }) {
           ←
         </button>
         <div style={{ flex: 1, textAlign: 'center' }}>
-          <div style={{ fontSize: 15, fontWeight: 700, color: '#fff' }}>Conversa com Rosa</div>
+          <div style={{ fontSize: 15, fontWeight: 700, color: '#fff' }}>{T.seniorVoiceTitle}</div>
           <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.7)' }}>
-            Passo {step + 1} de {FLOW_STEPS.length}
+            {T.seniorVoiceStep} {step + 1} {T.seniorVoiceOf} {FLOW_STEPS.length}
           </div>
         </div>
-        {/* Progress dots */}
         <div style={{ display: 'flex', gap: 4 }}>
           {FLOW_STEPS.map((_, i) => (
             <div key={i} style={{
@@ -190,7 +126,7 @@ export default function SeniorVoiceFlow({ navigate }) {
               color: '#fff',
             }}>
               <div style={{ fontSize: 14, lineHeight: 1.5 }}>"{current.rosaText}"</div>
-              <div style={{ fontSize: 10, opacity: 0.7, marginTop: 4 }}>— Dona Rosa</div>
+              <div style={{ fontSize: 10, opacity: 0.7, marginTop: 4 }}>{T.seniorVoiceRosaLabel}</div>
             </div>
           </div>
         )}
@@ -205,7 +141,7 @@ export default function SeniorVoiceFlow({ navigate }) {
             animation: 'fadeIn 0.5s ease',
           }}>
             <div style={{ fontSize: 13, fontWeight: 700, color: '#F5A623', marginBottom: 12, display: 'flex', alignItems: 'center', gap: 6 }}>
-              📋 Registo criado — Dona Rosa · 2 Abr 2026 · 14:37
+              {T.seniorVoiceRecordLabel}
             </div>
             {Object.entries(current.record).map(([key, val]) => (
               <div key={key} style={{ display: 'flex', justifyContent: 'space-between', padding: '6px 0', borderBottom: '1px solid var(--border-lt)', fontSize: 13 }}>
@@ -244,15 +180,15 @@ export default function SeniorVoiceFlow({ navigate }) {
             {current.state === 'listening' && (
               <>
                 <div style={{ fontSize: 13, color: 'var(--muted)', fontWeight: 500 }}>
-                  {isListening ? 'A ouvir...' : 'Toque para falar'}
+                  {isListening ? T.seniorVoiceListening : T.seniorVoiceTap}
                 </div>
-                <VoiceButton size="lg" isListening={isListening} onPress={handleVoicePress} label="Falar" />
+                <VoiceButton size="lg" isListening={isListening} onPress={handleVoicePress} label={lang === 'en' ? 'Speak' : 'Falar'} />
               </>
             )}
             {current.state === 'speaking' && (
               <div style={{ textAlign: 'center', padding: '10px' }}>
                 <div style={{ fontSize: 40, marginBottom: 12 }}>💬</div>
-                <div style={{ fontSize: 14, color: 'var(--muted)' }}>A falar com a Dona Rosa...</div>
+                <div style={{ fontSize: 14, color: 'var(--muted)' }}>{T.seniorVoiceSpeaking}</div>
               </div>
             )}
           </div>
@@ -267,14 +203,14 @@ export default function SeniorVoiceFlow({ navigate }) {
               borderRadius: '50%',
               animation: 'spin 0.8s linear infinite',
             }} />
-            <div style={{ fontSize: 14, color: 'var(--muted)' }}>A processar dados...</div>
+            <div style={{ fontSize: 14, color: 'var(--muted)' }}>{T.seniorVoiceProcessing}</div>
           </div>
         )}
 
         {current.state === 'success' && (
           <div style={{ textAlign: 'center' }}>
             <div style={{ fontSize: 64, marginBottom: 10 }}>✅</div>
-            <div style={{ fontSize: 16, fontWeight: 700, color: '#1a7a5a' }}>Tudo tratado!</div>
+            <div style={{ fontSize: 16, fontWeight: 700, color: '#1a7a5a' }}>{T.seniorVoiceAllDone}</div>
           </div>
         )}
 
@@ -289,7 +225,7 @@ export default function SeniorVoiceFlow({ navigate }) {
                 fontWeight: 700, cursor: 'pointer', boxShadow: '0 4px 16px rgba(166,63,82,0.35)',
               }}
             >
-              Próximo →
+              {T.seniorVoiceNext}
             </button>
           ) : (
             <button
@@ -300,12 +236,11 @@ export default function SeniorVoiceFlow({ navigate }) {
                 fontWeight: 700, cursor: 'pointer', boxShadow: '0 4px 16px rgba(40,168,120,0.35)',
               }}
             >
-              ✅ Concluído — Voltar ao Início
+              {T.seniorVoiceDone}
             </button>
           )}
         </div>
 
-        {/* History button on last step */}
         {isLast && (
           <button
             onClick={() => navigate('historico')}
@@ -315,7 +250,7 @@ export default function SeniorVoiceFlow({ navigate }) {
               padding: '13px', fontSize: 14, fontWeight: 600, color: 'var(--wine-md)', cursor: 'pointer',
             }}
           >
-            📜 Ver Histórico Completo
+            {T.seniorVoiceHistory}
           </button>
         )}
       </div>

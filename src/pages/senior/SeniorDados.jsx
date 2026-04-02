@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import StatusBar from '../../components/StatusBar';
 import BottomNavSenior from '../../components/BottomNavSenior';
+import { translations } from '../../data/translations';
 
-export default function SeniorDados({ navigate }) {
+export default function SeniorDados({ navigate, lang = 'pt' }) {
+  const T = translations[lang];
   const [systolic, setSystolic] = useState(140);
   const [diastolic, setDiastolic] = useState(90);
   const [glucose, setGlucose] = useState(156);
@@ -56,8 +58,8 @@ export default function SeniorDados({ navigate }) {
       <div style={{ padding: '8px 20px 16px', display: 'flex', alignItems: 'center', gap: 12 }}>
         <button onClick={() => navigate('home')} style={{ background: 'transparent', border: 'none', fontSize: 22, cursor: 'pointer', color: 'var(--wine-md)' }}>←</button>
         <div>
-          <div style={{ fontSize: 20, fontWeight: 800, color: 'var(--ink)' }}>Registar Dados</div>
-          <div style={{ fontSize: 12, color: 'var(--muted)' }}>Quarta, 2 de Abril de 2026</div>
+          <div style={{ fontSize: 20, fontWeight: 800, color: 'var(--ink)' }}>{T.seniorRegisterData}</div>
+          <div style={{ fontSize: 12, color: 'var(--muted)' }}>{T.seniorDate}</div>
         </div>
       </div>
 
@@ -73,8 +75,8 @@ export default function SeniorDados({ navigate }) {
           }}>
             <span style={{ fontSize: 22 }}>✅</span>
             <div>
-              <div style={{ fontSize: 14, fontWeight: 700, color: '#1a7a5a' }}>Perfeito, Rosa!</div>
-              <div style={{ fontSize: 12, color: '#1a7a5a' }}>Os seus dados foram guardados. {bpOk && glOk ? 'Tudo dentro do esperado.' : 'Fique atenta aos valores.'}</div>
+              <div style={{ fontSize: 14, fontWeight: 700, color: '#1a7a5a' }}>{T.seniorSavedOk}</div>
+              <div style={{ fontSize: 12, color: '#1a7a5a' }}>{T.seniorSavedText} {bpOk && glOk ? T.seniorSavedAllNormal : T.seniorSavedAttention}</div>
             </div>
           </div>
         )}
@@ -84,21 +86,21 @@ export default function SeniorDados({ navigate }) {
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 18 }}>
             <span style={{ fontSize: 24 }}>❤️</span>
             <div>
-              <div style={{ fontSize: 16, fontWeight: 700, color: 'var(--ink)' }}>Tensão Arterial</div>
-              <div style={{ fontSize: 12, color: 'var(--muted)' }}>Normal: menor que 140/90 mmHg</div>
+              <div style={{ fontSize: 16, fontWeight: 700, color: 'var(--ink)' }}>{T.seniorBPTitle}</div>
+              <div style={{ fontSize: 12, color: 'var(--muted)' }}>{T.seniorBPNormal}</div>
             </div>
             <span style={{
               marginLeft: 'auto', fontSize: 11, fontWeight: 700, padding: '4px 10px', borderRadius: 20,
               background: bpOk ? '#e8f8f0' : '#fff3e0', color: bpOk ? '#1a7a5a' : '#b06000',
             }}>
-              {bpOk ? '✓ Normal' : '⚠ Atenção'}
+              {bpOk ? T.seniorNormal : T.seniorAttention}
             </span>
           </div>
 
           <div style={{ display: 'flex', gap: 16 }}>
-            <NumInput label="Máxima" value={systolic} setValue={setSystolic} unit="mmHg" min={60} max={220} />
+            <NumInput label={T.seniorBPMax} value={systolic} setValue={setSystolic} unit="mmHg" min={60} max={220} />
             <div style={{ width: 1, background: 'var(--border)', alignSelf: 'stretch', margin: '0 0' }} />
-            <NumInput label="Mínima" value={diastolic} setValue={setDiastolic} unit="mmHg" min={40} max={150} />
+            <NumInput label={T.seniorBPMin} value={diastolic} setValue={setDiastolic} unit="mmHg" min={40} max={150} />
           </div>
         </div>
 
@@ -107,18 +109,18 @@ export default function SeniorDados({ navigate }) {
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 18 }}>
             <span style={{ fontSize: 24 }}>🩸</span>
             <div>
-              <div style={{ fontSize: 16, fontWeight: 700, color: 'var(--ink)' }}>Glicose no Sangue</div>
-              <div style={{ fontSize: 12, color: 'var(--muted)' }}>Normal em jejum: 70–100 mg/dL</div>
+              <div style={{ fontSize: 16, fontWeight: 700, color: 'var(--ink)' }}>{T.seniorGlucoseTitle}</div>
+              <div style={{ fontSize: 12, color: 'var(--muted)' }}>{T.seniorGlucoseNormal}</div>
             </div>
             <span style={{
               marginLeft: 'auto', fontSize: 11, fontWeight: 700, padding: '4px 10px', borderRadius: 20,
               background: glOk ? '#e8f8f0' : '#fff3e0', color: glOk ? '#1a7a5a' : '#b06000',
             }}>
-              {glOk ? '✓ Normal' : '⚠ Atenção'}
+              {glOk ? T.seniorNormal : T.seniorAttention}
             </span>
           </div>
           <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <NumInput label="Glicose" value={glucose} setValue={setGlucose} unit="mg/dL" min={40} max={400} step={5} />
+            <NumInput label={T.seniorGlucose} value={glucose} setValue={setGlucose} unit="mg/dL" min={40} max={400} step={5} />
           </div>
         </div>
 
@@ -141,8 +143,8 @@ export default function SeniorDados({ navigate }) {
               {medTaken && <span style={{ color: '#fff', fontSize: 16, fontWeight: 700 }}>✓</span>}
             </div>
             <div style={{ textAlign: 'left' }}>
-              <div style={{ fontSize: 15, fontWeight: 600, color: 'var(--ink)' }}>Tomei a medicação hoje</div>
-              <div style={{ fontSize: 12, color: 'var(--muted)', marginTop: 2 }}>Atorvastatina, Losartano, Metformina</div>
+              <div style={{ fontSize: 15, fontWeight: 600, color: 'var(--ink)' }}>{T.seniorMedTakenLabel}</div>
+              <div style={{ fontSize: 12, color: 'var(--muted)', marginTop: 2 }}>{T.seniorMedTakenMeds}</div>
             </div>
           </button>
         </div>
@@ -164,7 +166,7 @@ export default function SeniorDados({ navigate }) {
             marginBottom: 12,
           }}
         >
-          ✅ Guardar Dados
+          {T.seniorSaveBtn}
         </button>
 
         {/* Voice shortcut */}
@@ -187,11 +189,11 @@ export default function SeniorDados({ navigate }) {
             marginBottom: 16,
           }}
         >
-          🎤 Registar por Voz
+          {T.seniorVoiceRegister}
         </button>
       </div>
 
-      <BottomNavSenior active="dados" navigate={navigate} />
+      <BottomNavSenior active="dados" navigate={navigate} lang={lang} />
     </div>
   );
 }

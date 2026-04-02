@@ -1,10 +1,13 @@
-export default function BottomNavAdult({ active, navigate }) {
+import { translations } from '../data/translations';
+
+export default function BottomNavAdult({ active, navigate, lang = 'pt' }) {
+  const T = translations[lang];
   const items = [
-    { key: 'home',      icon: '🏠', label: 'Início' },
-    { key: 'familia',   icon: '👨‍👩‍👧', label: 'Família' },
-    { key: 'consultas', icon: '🏥', label: 'Consultas' },
-    { key: 'alertas',   icon: '🔔', label: 'Alertas' },
-    { key: 'perfil',    icon: '👤', label: 'Perfil' },
+    { key: 'home',      icon: '🏠', label: T.navHome },
+    { key: 'familia',   icon: '👨‍👩‍👧', label: T.navFamily },
+    { key: 'consultas', icon: '🏥', label: T.navConsultations },
+    { key: 'alertas',   icon: '🔔', label: T.navAlerts },
+    { key: 'perfil',    icon: '👤', label: T.navProfile },
   ];
 
   return (

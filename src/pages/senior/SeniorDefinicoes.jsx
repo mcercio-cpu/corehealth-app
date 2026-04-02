@@ -1,11 +1,13 @@
 import StatusBar from '../../components/StatusBar';
 import BottomNavSenior from '../../components/BottomNavSenior';
+import { translations } from '../../data/translations';
 
-export default function SeniorDefinicoes({ navigate, onLogout }) {
+export default function SeniorDefinicoes({ navigate, onLogout, lang = 'pt' }) {
+  const T = translations[lang];
   const toggleItems = [
-    { icon: '🔔', label: 'Alertas de medicamentos', description: 'Lembretes para tomar a medicação', enabled: true },
-    { icon: '📅', label: 'Check-ins diários', description: 'Perguntar se tomou a medicação', enabled: true },
-    { icon: '⚠️', label: 'Dados fora do normal', description: 'Alertar se tensão ou glicose alta', enabled: false },
+    { icon: '🔔', label: T.seniorToggle1, description: T.seniorToggle1Sub, enabled: true },
+    { icon: '📅', label: T.seniorToggle2, description: T.seniorToggle2Sub, enabled: true },
+    { icon: '⚠️', label: T.seniorToggle3, description: T.seniorToggle3Sub, enabled: false },
   ];
 
   return (
@@ -14,7 +16,7 @@ export default function SeniorDefinicoes({ navigate, onLogout }) {
 
       <div style={{ padding: '8px 20px 16px', display: 'flex', alignItems: 'center', gap: 12 }}>
         <button onClick={() => navigate('home')} style={{ background: 'transparent', border: 'none', fontSize: 22, cursor: 'pointer', color: 'var(--wine-md)' }}>←</button>
-        <div style={{ fontSize: 20, fontWeight: 800, color: 'var(--ink)' }}>Definições</div>
+        <div style={{ fontSize: 20, fontWeight: 800, color: 'var(--ink)' }}>{T.seniorSettingsTitle}</div>
       </div>
 
       <div className="scroll-area">
@@ -25,9 +27,9 @@ export default function SeniorDefinicoes({ navigate, onLogout }) {
               👵
             </div>
             <div>
-              <div style={{ fontSize: 18, fontWeight: 700, color: '#fff' }}>Rosa Santos</div>
-              <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.75)' }}>68 anos · Mértola, Alentejo</div>
-              <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.6)', marginTop: 3 }}>Diabetes Tipo 2 · Hipertensão</div>
+              <div style={{ fontSize: 18, fontWeight: 700, color: '#fff' }}>{T.seniorProfileName}</div>
+              <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.75)' }}>{T.seniorProfileAge}</div>
+              <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.6)', marginTop: 3 }}>{T.seniorProfileConditions}</div>
             </div>
           </div>
           <button style={{
@@ -35,32 +37,32 @@ export default function SeniorDefinicoes({ navigate, onLogout }) {
             padding: '14px 18px', cursor: 'pointer', textAlign: 'left', fontSize: 14, fontWeight: 600, color: 'var(--wine-md)',
             display: 'flex', alignItems: 'center', justifyContent: 'space-between',
           }}>
-            Editar Perfil <span>›</span>
+            {T.seniorEditProfile} <span>›</span>
           </button>
         </div>
 
         {/* Emergency contact */}
-        <div className="section-title">Contacto de Emergência</div>
+        <div className="section-title">{T.seniorEmergencyContact}</div>
         <div style={{ margin: '0 16px 14px', background: '#fff', borderRadius: 20, padding: '16px 18px', border: '1px solid var(--border)' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
             <div style={{ width: 44, height: 44, borderRadius: '50%', background: 'var(--cream)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 22 }}>
               👨‍💻
             </div>
             <div style={{ flex: 1 }}>
-              <div style={{ fontSize: 15, fontWeight: 700, color: 'var(--ink)' }}>Ricardo Santos (filho)</div>
-              <div style={{ fontSize: 13, color: 'var(--muted)' }}>+351 91 234 5678</div>
+              <div style={{ fontSize: 15, fontWeight: 700, color: 'var(--ink)' }}>{T.seniorContactName}</div>
+              <div style={{ fontSize: 13, color: 'var(--muted)' }}>{T.seniorContactPhone}</div>
             </div>
             <button style={{
               background: 'var(--cream)', border: 'none', borderRadius: 12, padding: '8px 12px',
               fontSize: 13, fontWeight: 600, color: 'var(--wine-md)', cursor: 'pointer',
             }}>
-              📞 Ligar
+              {T.seniorCallBtn}
             </button>
           </div>
         </div>
 
         {/* Notifications */}
-        <div className="section-title">Notificações</div>
+        <div className="section-title">{T.seniorNotifications}</div>
         <div style={{ margin: '0 16px 14px', background: '#fff', borderRadius: 20, border: '1px solid var(--border)', overflow: 'hidden' }}>
           {toggleItems.map((item, i) => (
             <div key={i} style={{
@@ -93,13 +95,13 @@ export default function SeniorDefinicoes({ navigate, onLogout }) {
         </div>
 
         {/* Privacy */}
-        <div className="section-title">Privacidade</div>
+        <div className="section-title">{T.seniorPrivacy}</div>
         <div style={{ margin: '0 16px 14px', background: '#fff', borderRadius: 20, padding: '14px 18px', border: '1px solid var(--border)' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
             <span style={{ fontSize: 22 }}>🔒</span>
             <div>
-              <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--ink)' }}>Dados guardados localmente</div>
-              <div style={{ fontSize: 11, color: 'var(--muted)', marginTop: 2 }}>Encriptação activada. Os seus dados são seus.</div>
+              <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--ink)' }}>{T.seniorPrivacyTitle}</div>
+              <div style={{ fontSize: 11, color: 'var(--muted)', marginTop: 2 }}>{T.seniorPrivacyText}</div>
             </div>
           </div>
         </div>
@@ -109,8 +111,8 @@ export default function SeniorDefinicoes({ navigate, onLogout }) {
           <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
             <span style={{ fontSize: 22 }}>ℹ️</span>
             <div>
-              <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--ink)' }}>CoreHealth v1.0</div>
-              <div style={{ fontSize: 11, color: 'var(--muted)', marginTop: 2 }}>Saúde para todos.</div>
+              <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--ink)' }}>{T.seniorAbout}</div>
+              <div style={{ fontSize: 11, color: 'var(--muted)', marginTop: 2 }}>{T.seniorAboutSub}</div>
             </div>
           </div>
         </div>
@@ -125,12 +127,12 @@ export default function SeniorDefinicoes({ navigate, onLogout }) {
               color: '#dc2626', cursor: 'pointer',
             }}
           >
-            Sair da Conta
+            {T.seniorLogout}
           </button>
         </div>
       </div>
 
-      <BottomNavSenior active="definicoes" navigate={navigate} />
+      <BottomNavSenior active="definicoes" navigate={navigate} lang={lang} />
     </div>
   );
 }

@@ -1,26 +1,29 @@
 import StatusBar from '../../components/StatusBar';
 import BottomNavAdult from '../../components/BottomNavAdult';
 import { ricardoConsultas, ricardoExames } from '../../data/mockConsultas';
+import { translations } from '../../data/translations';
 
-export default function AdultConsultas({ navigate }) {
+export default function AdultConsultas({ navigate, lang = 'pt' }) {
+  const T = translations[lang];
+
   return (
     <div className="screen">
       <StatusBar />
       <div style={{ padding: '8px 20px 14px', display: 'flex', alignItems: 'center', gap: 12 }}>
         <div>
-          <div style={{ fontSize: 20, fontWeight: 800, color: 'var(--ink)' }}>Consultas & Exames</div>
-          <div style={{ fontSize: 12, color: 'var(--muted)' }}>Histórico clínico</div>
+          <div style={{ fontSize: 20, fontWeight: 800, color: 'var(--ink)' }}>{T.adultConsultasTitle}</div>
+          <div style={{ fontSize: 12, color: 'var(--muted)' }}>{T.adultConsultasSub}</div>
         </div>
         <button style={{
           marginLeft: 'auto', background: 'var(--wine-md)', border: 'none',
           borderRadius: 12, padding: '8px 14px', fontSize: 13, fontWeight: 700, color: '#fff', cursor: 'pointer',
         }}>
-          + Marcar
+          {T.adultConsultasBook}
         </button>
       </div>
 
       <div className="scroll-area">
-        <div className="section-title">Próximas Consultas</div>
+        <div className="section-title">{T.adultConsultasUpcoming}</div>
 
         <div style={{ padding: '0 16px' }}>
           {ricardoConsultas.map(c => (
@@ -58,7 +61,7 @@ export default function AdultConsultas({ navigate }) {
                 </div>
                 {c.proximaDias <= 3 && (
                   <div style={{ marginTop: 6, fontSize: 12, fontWeight: 700, color: 'var(--wine-md)' }}>
-                    ⏰ Em {c.proximaDias} dias!
+                    ⏰ {T.adultConsultasInDays} {c.proximaDias} {T.adultConsultasDays}
                   </div>
                 )}
                 <div style={{ marginTop: 10, display: 'flex', gap: 8 }}>
@@ -66,14 +69,14 @@ export default function AdultConsultas({ navigate }) {
                     background: 'var(--cream)', border: 'none', borderRadius: 10,
                     padding: '7px 12px', fontSize: 12, fontWeight: 600, color: 'var(--wine-md)', cursor: 'pointer',
                   }}>
-                    📅 Calendário
+                    {T.adultConsultasCalendar}
                   </button>
                   {c.videochamada && (
                     <button style={{
                       background: 'var(--cream)', border: 'none', borderRadius: 10,
                       padding: '7px 12px', fontSize: 12, fontWeight: 600, color: 'var(--wine-md)', cursor: 'pointer',
                     }}>
-                      📹 Videochamada
+                      {T.adultConsultasVideo}
                     </button>
                   )}
                 </div>
@@ -84,13 +87,13 @@ export default function AdultConsultas({ navigate }) {
                 fontSize: 11, fontWeight: 700, padding: '4px 10px', borderRadius: 20, flexShrink: 0,
                 background: '#e8f8f0', color: '#1a7a5a',
               }}>
-                Confirmada ✓
+                {T.adultConsultasConfirmed}
               </span>
             </div>
           ))}
         </div>
 
-        <div className="section-title" style={{ marginTop: 6 }}>Exames Recentes</div>
+        <div className="section-title" style={{ marginTop: 6 }}>{T.adultConsultasExams}</div>
         <div style={{ padding: '0 16px' }}>
           {ricardoExames.map(ex => (
             <div key={ex.id} style={{
@@ -107,7 +110,7 @@ export default function AdultConsultas({ navigate }) {
                   <div style={{ fontSize: 12, color: 'var(--muted)' }}>{ex.data} · {ex.local}</div>
                 </div>
                 <span style={{ fontSize: 11, fontWeight: 700, padding: '4px 10px', borderRadius: 20, background: '#e8f8f0', color: '#1a7a5a' }}>
-                  Normal ✓
+                  {T.adultConsultasNormal}
                 </span>
               </div>
 
@@ -145,12 +148,12 @@ export default function AdultConsultas({ navigate }) {
             justifyContent: 'center',
             gap: 8,
           }}>
-            + Carregar novo exame
+            {T.adultConsultasUpload}
           </button>
         </div>
       </div>
 
-      <BottomNavAdult active="consultas" navigate={navigate} />
+      <BottomNavAdult active="consultas" navigate={navigate} lang={lang} />
     </div>
   );
 }

@@ -1,11 +1,24 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import logoCrimson from '../../assets/logo-crimson.png';
 
-export default function SplashScreen({ onFinish }) {
+export default function SplashScreen({ onFinish, lang, setLang }) {
+  const [selected, setSelected] = useState(lang || 'pt');
+  const [showLang, setShowLang] = useState(false);
+
   useEffect(() => {
-    const timer = setTimeout(onFinish, 2800);
-    return () => clearTimeout(timer);
-  }, [onFinish]);
+    // Reveal language toggle after 1s
+    const revealTimer = setTimeout(() => setShowLang(true), 1000);
+    // Auto-advance after 2.8s
+    const autoTimer = setTimeout(() => onFinish(selected), 2800);
+    return () => { clearTimeout(revealTimer); clearTimeout(autoTimer); };
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const handleSelect = (l) => {
+    setSelected(l);
+    setLang(l);
+    // Small delay so user sees the highlight before advancing
+    setTimeout(() => onFinish(l), 420);
+  };
 
   return (
     <div style={{
@@ -17,6 +30,7 @@ export default function SplashScreen({ onFinish }) {
       background: 'linear-gradient(160deg, #590212 0%, #A63F52 60%, #D96C80 100%)',
       gap: 28,
       padding: 40,
+      position: 'relative',
     }}>
       {/* Logo */}
       <div style={{ animation: 'fadeIn 0.8s ease forwards' }}>
@@ -53,11 +67,11 @@ export default function SplashScreen({ onFinish }) {
           fontWeight: 400,
           letterSpacing: '0.3px',
         }}>
-          Saúde para todos.
+          {selected === 'en' ? 'Health for everyone.' : 'Saúde para todos.'}
         </div>
       </div>
 
-      {/* Loading indicator */}
+      {/* Loading dots */}
       <div style={{
         marginTop: 40,
         animation: 'fadeIn 0.8s ease 0.8s both',
@@ -73,6 +87,46 @@ export default function SplashScreen({ onFinish }) {
             animation: `wave 1s ease ${i * 0.2}s infinite`,
             display: 'block',
           }} />
+        ))}
+      </div>
+
+      {/* Language toggle pill */}
+      <div style={{
+        position: 'absolute',
+        bottom: 48,
+        left: '50%',
+        transform: 'translateX(-50%)',
+        opacity: showLang ? 1 : 0,
+        transition: 'opacity 0.5s ease',
+        display: 'flex',
+        alignItems: 'center',
+        background: 'rgba(255,255,255,0.15)',
+        backdropFilter: 'blur(8px)',
+        borderRadius: 50,
+        padding: '4px',
+        gap: 2,
+        border: '1px solid rgba(255,255,255,0.25)',
+      }}>
+        {['pt', 'en'].map(l => (
+          <button
+            key={l}
+            onClick={() => handleSelect(l)}
+            style={{
+              background: selected === l ? '#fff' : 'transparent',
+              color: selected === l ? '#590212' : 'rgba(255,255,255,0.75)',
+              border: 'none',
+              borderRadius: 50,
+              padding: '7px 18px',
+              fontSize: 13,
+              fontWeight: 700,
+              cursor: 'pointer',
+              transition: 'all 0.25s',
+              letterSpacing: '0.5px',
+              minWidth: 52,
+            }}
+          >
+            {l.toUpperCase()}
+          </button>
         ))}
       </div>
     </div>

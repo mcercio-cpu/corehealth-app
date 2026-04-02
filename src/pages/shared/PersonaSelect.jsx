@@ -1,22 +1,25 @@
 import logoCrimson from '../../assets/logo-crimson.png';
+import { translations } from '../../data/translations';
 
-export default function PersonaSelect({ onSelect }) {
+export default function PersonaSelect({ onSelect, lang = 'pt' }) {
+  const T = translations[lang];
+
   const personas = [
     {
       id: 'senior',
       icon: '👵',
-      title: 'Sou um sénior',
-      subtitle: 'Uso apenas a minha voz.',
-      description: 'Falo com a Cora para registar a minha tensão e glicose, receber lembretes de medicação e ouvir dicas de saúde personalizadas.',
+      title: T.personaSeniorTitle,
+      subtitle: T.personaSeniorSubtitle,
+      description: T.personaSeniorDesc,
       color: '#A63F52',
       bg: '#FBF0F2',
     },
     {
       id: 'adult',
       icon: '🧑',
-      title: 'Gestor de saúde',
-      subtitle: 'Controlo e acompanhamento.',
-      description: 'Gero os meus dados, marco consultas e acompanho quem mais gosto com alertas e notificações em tempo real.',
+      title: T.personaAdultTitle,
+      subtitle: T.personaAdultSubtitle,
+      description: T.personaAdultDesc,
       color: '#590212',
       bg: '#FBF0F2',
     },
@@ -48,9 +51,9 @@ export default function PersonaSelect({ onSelect }) {
           boxShadow: '0 4px 16px rgba(0,0,0,0.2)',
         }} />
         <div style={{ textAlign: 'center' }}>
-          <div style={{ fontSize: 24, fontWeight: 800, color: '#fff', lineHeight: 1.2 }}>Bem-vindo!</div>
+          <div style={{ fontSize: 24, fontWeight: 800, color: '#fff', lineHeight: 1.2 }}>{T.welcome}</div>
           <div style={{ fontSize: 14, color: 'rgba(255,255,255,0.75)', marginTop: 6 }}>
-            Como vamos usar a CoreHealth?
+            {T.welcomeSub}
           </div>
         </div>
       </div>
@@ -115,7 +118,7 @@ export default function PersonaSelect({ onSelect }) {
           </button>
         ))}
 
-        {/* Professional option — Em breve */}
+        {/* Clinical option — Coming soon */}
         <button
           style={{
             width: '100%',
@@ -147,17 +150,17 @@ export default function PersonaSelect({ onSelect }) {
           </div>
           <div style={{ flex: 1 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 3 }}>
-              <span style={{ fontSize: 15, fontWeight: 700, color: 'var(--muted)' }}>Acesso Clínico</span>
+              <span style={{ fontSize: 15, fontWeight: 700, color: 'var(--muted)' }}>{T.personaClinicalTitle}</span>
               <span style={{
                 fontSize: 10, fontWeight: 700, padding: '2px 8px', borderRadius: 20,
                 background: 'var(--cream)', color: 'var(--wine-md)', letterSpacing: '0.3px',
-              }}>EM BREVE</span>
+              }}>{T.comingSoon}</span>
             </div>
             <div style={{ fontSize: 12, fontWeight: 500, color: 'var(--muted)', marginBottom: 4 }}>
-              Sou profissional de saúde.
+              {T.personaClinicalSubtitle}
             </div>
             <div style={{ fontSize: 11, color: 'var(--muted)', lineHeight: 1.5, opacity: 0.8 }}>
-              Analiso o histórico e os sinais vitais partilhados pelos meus pacientes para um acompanhamento preventivo.
+              {T.personaClinicalDesc}
             </div>
           </div>
         </button>
@@ -166,7 +169,7 @@ export default function PersonaSelect({ onSelect }) {
       {/* Footer */}
       <div style={{ padding: '0 20px 32px', textAlign: 'center' }}>
         <div style={{ fontSize: 11, color: 'var(--muted)' }}>
-          Saúde para todos.
+          {T.tagline}
         </div>
       </div>
     </div>

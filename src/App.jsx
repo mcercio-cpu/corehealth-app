@@ -24,8 +24,12 @@ export default function App() {
   const [appState, setAppState] = useState('splash');
   const [persona, setPersona] = useState(null);
   const [screen, setScreen] = useState(null);
+  const [lang, setLang] = useState('pt');
 
-  const goToPersona = () => setAppState('persona');
+  const goToPersona = (selectedLang) => {
+    if (selectedLang) setLang(selectedLang);
+    setAppState('persona');
+  };
 
   const selectPersona = (p) => {
     setPersona(p);
@@ -46,10 +50,10 @@ export default function App() {
   };
 
   const renderScreen = () => {
-    if (appState === 'splash') return <SplashScreen onFinish={goToPersona} />;
-    if (appState === 'persona') return <PersonaSelect onSelect={selectPersona} />;
+    if (appState === 'splash') return <SplashScreen onFinish={goToPersona} lang={lang} setLang={setLang} />;
+    if (appState === 'persona') return <PersonaSelect onSelect={selectPersona} lang={lang} />;
 
-    const props = { navigate, onLogout };
+    const props = { navigate, onLogout, lang };
 
     if (appState === 'senior') {
       switch (screen) {
@@ -72,7 +76,7 @@ export default function App() {
       }
     }
 
-    return <SplashScreen onFinish={goToPersona} />;
+    return <SplashScreen onFinish={goToPersona} lang={lang} setLang={setLang} />;
   };
 
   return (

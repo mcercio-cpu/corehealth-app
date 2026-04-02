@@ -2,8 +2,10 @@ import { useState } from 'react';
 import StatusBar from '../../components/StatusBar';
 import BottomNavSenior from '../../components/BottomNavSenior';
 import { rosaMedications } from '../../data/mockMedications';
+import { translations } from '../../data/translations';
 
-export default function SeniorMedicamentos({ navigate }) {
+export default function SeniorMedicamentos({ navigate, lang = 'pt' }) {
+  const T = translations[lang];
   const [taken, setTaken] = useState(
     rosaMedications.reduce((acc, m) => ({ ...acc, [m.id]: m.todayTaken }), {})
   );
@@ -21,8 +23,8 @@ export default function SeniorMedicamentos({ navigate }) {
       <div style={{ padding: '8px 20px 16px', display: 'flex', alignItems: 'center', gap: 12 }}>
         <button onClick={() => navigate('home')} style={{ background: 'transparent', border: 'none', fontSize: 22, cursor: 'pointer', color: 'var(--wine-md)' }}>←</button>
         <div>
-          <div style={{ fontSize: 20, fontWeight: 800, color: 'var(--ink)' }}>Medicamentos</div>
-          <div style={{ fontSize: 12, color: 'var(--muted)' }}>Hoje, 2 de Abril de 2026</div>
+          <div style={{ fontSize: 20, fontWeight: 800, color: 'var(--ink)' }}>{T.seniorMedTitle}</div>
+          <div style={{ fontSize: 12, color: 'var(--muted)' }}>{T.seniorMedDate}</div>
         </div>
       </div>
 
@@ -41,12 +43,12 @@ export default function SeniorMedicamentos({ navigate }) {
           <span style={{ fontSize: 32 }}>{allTaken ? '✅' : '💊'}</span>
           <div>
             <div style={{ fontSize: 15, fontWeight: 700 }}>
-              {allTaken ? 'Parabéns, Rosa!' : 'Medicação de hoje'}
+              {allTaken ? T.seniorMedAllDone : T.seniorMedToday}
             </div>
             <div style={{ fontSize: 13, opacity: 0.85, marginTop: 3 }}>
               {allTaken
-                ? 'Tomou toda a medicação. Continue assim!'
-                : `${Object.values(taken).filter(Boolean).length} de ${rosaMedications.length} medicamentos tomados`}
+                ? T.seniorMedAllDoneText
+                : `${Object.values(taken).filter(Boolean).length} / ${rosaMedications.length}`}
             </div>
           </div>
         </div>
@@ -55,12 +57,12 @@ export default function SeniorMedicamentos({ navigate }) {
         <div style={{ margin: '0 16px 18px', background: '#fff', borderRadius: 18, padding: '14px 18px', border: '1px solid var(--border)', display: 'flex', alignItems: 'center', gap: 14 }}>
           <span style={{ fontSize: 28 }}>🔥</span>
           <div>
-            <div style={{ fontSize: 16, fontWeight: 800, color: 'var(--wine)' }}>34 dias seguidos</div>
-            <div style={{ fontSize: 12, color: 'var(--muted)' }}>Aderência à medicação — continue assim!</div>
+            <div style={{ fontSize: 16, fontWeight: 800, color: 'var(--wine)' }}>{T.seniorMedStreak}</div>
+            <div style={{ fontSize: 12, color: 'var(--muted)' }}>{T.seniorMedStreakSub}</div>
           </div>
         </div>
 
-        <div className="section-title">Hoje</div>
+        <div className="section-title">{T.seniorMedTodaySection}</div>
 
         {/* Medications list */}
         <div style={{ padding: '0 16px' }}>
@@ -74,7 +76,6 @@ export default function SeniorMedicamentos({ navigate }) {
               transition: 'border-color 0.3s',
             }}>
               <div style={{ display: 'flex', alignItems: 'flex-start', gap: 14 }}>
-                {/* Color dot */}
                 <div style={{
                   width: 48, height: 48, borderRadius: 14,
                   background: `${med.color}18`,
@@ -99,15 +100,15 @@ export default function SeniorMedicamentos({ navigate }) {
               {/* Today status */}
               <div style={{ marginTop: 14, display: 'flex', gap: 10 }}>
                 <div style={{ flex: 1, background: 'var(--cream-lt)', borderRadius: 12, padding: '10px 12px' }}>
-                  <div style={{ fontSize: 11, color: 'var(--muted)', marginBottom: 4 }}>⏰ Hoje às {med.timeLabel}</div>
+                  <div style={{ fontSize: 11, color: 'var(--muted)', marginBottom: 4 }}>⏰ {T.seniorMedTodayAt} {med.timeLabel}</div>
                   <div style={{ fontSize: 13, fontWeight: 700, color: taken[med.id] ? '#1a7a5a' : '#b06000' }}>
-                    {taken[med.id] ? '✅ Tomado' : '⏳ Pendente'}
+                    {taken[med.id] ? T.seniorMedTaken2 : T.seniorMedPending}
                   </div>
                 </div>
                 <div style={{ flex: 1, background: 'var(--cream-lt)', borderRadius: 12, padding: '10px 12px' }}>
-                  <div style={{ fontSize: 11, color: 'var(--muted)', marginBottom: 4 }}>⏰ Amanhã às {med.timeLabel}</div>
+                  <div style={{ fontSize: 11, color: 'var(--muted)', marginBottom: 4 }}>⏰ {T.seniorMedTomorrowAt} {med.timeLabel}</div>
                   <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--muted)' }}>
-                    ⏳ Pendente
+                    {T.seniorMedPending}
                   </div>
                 </div>
               </div>
@@ -129,7 +130,7 @@ export default function SeniorMedicamentos({ navigate }) {
                   transition: 'all 0.25s',
                 }}
               >
-                {taken[med.id] ? '↩ Desfazer registo' : '✓ Marcar como tomado'}
+                {taken[med.id] ? T.seniorMedUndo : T.seniorMedMarkDone}
               </button>
             </div>
           ))}
@@ -152,12 +153,12 @@ export default function SeniorMedicamentos({ navigate }) {
             justifyContent: 'center',
             gap: 8,
           }}>
-            + Adicionar medicamento
+            {T.seniorMedAdd}
           </button>
         </div>
       </div>
 
-      <BottomNavSenior active="medicamentos" navigate={navigate} />
+      <BottomNavSenior active="medicamentos" navigate={navigate} lang={lang} />
     </div>
   );
 }
