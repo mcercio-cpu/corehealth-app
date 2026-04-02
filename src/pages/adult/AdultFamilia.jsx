@@ -1,10 +1,29 @@
+import { useState } from 'react';
 import StatusBar from '../../components/StatusBar';
 import BottomNavAdult from '../../components/BottomNavAdult';
+import MiniChart from '../../components/MiniChart';
 import { rosaBiometrics } from '../../data/mockBiometrics';
 
 const rosaLatest = rosaBiometrics[0];
 
+// 7-day mock history for Rosa
+const rosaHistory = {
+  dates: ['27 Mar', '28', '29', '30', '31', '1 Abr', '2'],
+  systolic: [148, 152, 144, 155, 149, 158, 156],
+  diastolic: [92, 95, 90, 97, 91, 96, 94],
+  glucose: [142, 138, 145, 151, 148, 154, 156],
+};
+
+const rosaConsultas = [
+  { icon: '🏥', title: 'Consulta — Clínica de Diabetes', date: 'Quinta, 10 Abr às 10:00', days: '8 dias', urgent: false },
+  { icon: '💊', title: 'Renovar medicação — Metformina', date: 'Segunda, 7 Abr às 09:00', days: '5 dias', urgent: false },
+  { icon: '🩺', title: 'Análises de sangue em jejum', date: 'Amanhã, 3 Abr às 08:30', days: 'Amanhã', urgent: true },
+];
+
 export default function AdultFamilia({ navigate }) {
+  const [showCall, setShowCall] = useState(false);
+  const [showHistory, setShowHistory] = useState(false);
+
   const familyMembers = [
     {
       id: 'rosa',
@@ -122,19 +141,108 @@ export default function AdultFamilia({ navigate }) {
 
                   {/* Action buttons */}
                   <div style={{ display: 'flex', gap: 8, marginTop: 12 }}>
-                    <button style={{
-                      flex: 1, background: 'var(--wine-md)', color: '#fff', border: 'none',
-                      borderRadius: 14, padding: '12px', fontSize: 13, fontWeight: 700, cursor: 'pointer',
-                    }}>
+                    <button
+                      onClick={() => setShowCall(true)}
+                      style={{
+                        flex: 1, background: 'var(--wine-md)', color: '#fff', border: 'none',
+                        borderRadius: 14, padding: '12px', fontSize: 13, fontWeight: 700, cursor: 'pointer',
+                      }}
+                    >
                       📞 Contactar
                     </button>
-                    <button style={{
-                      flex: 1, background: 'var(--cream)', color: 'var(--wine-md)', border: '1px solid var(--border)',
-                      borderRadius: 14, padding: '12px', fontSize: 13, fontWeight: 700, cursor: 'pointer',
-                    }}>
+                    <button
+                      onClick={() => setShowHistory(h => !h)}
+                      style={{
+                        flex: 1,
+                        background: showHistory ? 'var(--wine-md)' : 'var(--cream)',
+                        color: showHistory ? '#fff' : 'var(--wine-md)',
+                        border: '1px solid var(--border)',
+                        borderRadius: 14, padding: '12px', fontSize: 13, fontWeight: 700, cursor: 'pointer',
+                      }}
+                    >
                       📊 Ver Histórico
                     </button>
                   </div>
+
+                  {/* History charts — expandable */}
+                  {showHistory && (
+                    <div style={{ marginTop: 16, borderTop: '1px solid var(--border-lt)', paddingTop: 16 }}>
+                      {/* Tensão arterial */}
+                      <div style={{ marginBottom: 18 }}>
+                        <div style={{ fontSize: 12, fontWeight: 700, color: 'var(--muted)', textTransform: 'uppercase', letterSpacing: '0.4px', marginBottom: 8 }}>
+                          ❤️ Tensão Arterial — Últimos 7 Dias
+                        </div>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 4 }}>
+                          <span style={{ fontSize: 10, color: 'var(--muted)' }}>Sistólica <span style={{ color: '#A63F52', fontWeight: 700 }}>Sistólica</span></span>
+                          <span style={{ fontSize: 10, color: 'var(--muted)' }}>Normal: &lt;130 mmHg</span>
+                        </div>
+                        <MiniChart data={rosaHistory.systolic} color="#A63F52" height={60} />
+                        <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 4 }}>
+                          {rosaHistory.dates.map((d, i) => (
+                            <span key={i} style={{ fontSize: 9, color: 'var(--muted)' }}>{d}</span>
+                          ))}
+                        </div>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 8 }}>
+                          {rosaHistory.systolic.map((v, i) => (
+                            <span key={i} style={{ fontSize: 10, fontWeight: 700, color: v >= 150 ? '#b06000' : 'var(--ink)', textAlign: 'center', flex: 1 }}>{v}</span>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Glicose */}
+                      <div>
+                        <div style={{ fontSize: 12, fontWeight: 700, color: 'var(--muted)', textTransform: 'uppercase', letterSpacing: '0.4px', marginBottom: 8 }}>
+                          🩸 Glicose — Últimos 7 Dias
+                        </div>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 4 }}>
+                          <span style={{ fontSize: 10, color: 'var(--muted)' }}>mg/dL</span>
+                          <span style={{ fontSize: 10, color: 'var(--muted)' }}>Normal: &lt;130 mg/dL</span>
+                        </div>
+                        <MiniChart data={rosaHistory.glucose} color="#b06000" height={60} />
+                        <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 4 }}>
+                          {rosaHistory.dates.map((d, i) => (
+                            <span key={i} style={{ fontSize: 9, color: 'var(--muted)' }}>{d}</span>
+                          ))}
+                        </div>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 8 }}>
+                          {rosaHistory.glucose.map((v, i) => (
+                            <span key={i} style={{ fontSize: 10, fontWeight: 700, color: v >= 140 ? '#b06000' : 'var(--ink)', textAlign: 'center', flex: 1 }}>{v}</span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Upcoming appointments for Rosa */}
+              <div style={{ marginTop: 4 }}>
+                <div className="section-title" style={{ padding: '12px 0 8px' }}>Próximas Consultas da Rosa</div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                  {rosaConsultas.map((c, i) => (
+                    <div key={i} style={{
+                      background: '#fff',
+                      borderRadius: 16,
+                      padding: '14px 16px',
+                      border: c.urgent ? '1.5px solid #f5c87a' : '1px solid var(--border)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 12,
+                    }}>
+                      <span style={{ fontSize: 22 }}>{c.icon}</span>
+                      <div style={{ flex: 1 }}>
+                        <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--ink)' }}>{c.title}</div>
+                        <div style={{ fontSize: 11, color: 'var(--muted)', marginTop: 2 }}>{c.date}</div>
+                      </div>
+                      <span style={{
+                        fontSize: 11, fontWeight: 700,
+                        background: c.urgent ? '#fff3e0' : 'var(--cream)',
+                        color: c.urgent ? '#b06000' : 'var(--muted)',
+                        padding: '4px 10px', borderRadius: 20,
+                        whiteSpace: 'nowrap',
+                      }}>{c.days}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
@@ -150,6 +258,75 @@ export default function AdultFamilia({ navigate }) {
       </div>
 
       <BottomNavAdult active="familia" navigate={navigate} />
+
+      {/* Fake call screen overlay */}
+      {showCall && (
+        <div style={{
+          position: 'absolute', inset: 0,
+          background: 'linear-gradient(160deg, #1a0a0e 0%, #590212 60%, #A63F52 100%)',
+          display: 'flex', flexDirection: 'column',
+          alignItems: 'center', justifyContent: 'space-between',
+          padding: '60px 32px 56px',
+          zIndex: 100,
+          borderRadius: 'inherit',
+        }}>
+          {/* Top info */}
+          <div style={{ textAlign: 'center' }}>
+            <div style={{ fontSize: 14, color: 'rgba(255,255,255,0.6)', fontWeight: 500, marginBottom: 12 }}>A ligar…</div>
+            <div style={{
+              width: 96, height: 96, borderRadius: '50%',
+              background: 'rgba(255,255,255,0.15)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              fontSize: 52, margin: '0 auto 20px',
+              boxShadow: '0 0 0 12px rgba(255,255,255,0.08)',
+              animation: 'pulse 2s ease-in-out infinite',
+            }}>
+              👵
+            </div>
+            <div style={{ fontSize: 26, fontWeight: 800, color: '#fff', marginBottom: 6 }}>Rosa Santos</div>
+            <div style={{ fontSize: 14, color: 'rgba(255,255,255,0.6)' }}>Mãe · +351 91 234 5678</div>
+          </div>
+
+          {/* Action row */}
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 20, width: '100%' }}>
+            {/* Secondary actions */}
+            <div style={{ display: 'flex', gap: 32, justifyContent: 'center' }}>
+              {[
+                { icon: '🔇', label: 'Mudo' },
+                { icon: '⌨️', label: 'Teclado' },
+                { icon: '🔊', label: 'Altifalante' },
+              ].map(a => (
+                <div key={a.label} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
+                  <div style={{
+                    width: 56, height: 56, borderRadius: '50%',
+                    background: 'rgba(255,255,255,0.12)',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    fontSize: 24, cursor: 'pointer',
+                  }}>
+                    {a.icon}
+                  </div>
+                  <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.6)' }}>{a.label}</span>
+                </div>
+              ))}
+            </div>
+
+            {/* End call button */}
+            <button
+              onClick={() => setShowCall(false)}
+              style={{
+                width: 72, height: 72, borderRadius: '50%',
+                background: '#dc2626', border: 'none',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                fontSize: 28, cursor: 'pointer',
+                boxShadow: '0 6px 24px rgba(220,38,38,0.5)',
+              }}
+            >
+              📵
+            </button>
+            <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.5)' }}>Terminar chamada</span>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
