@@ -14,7 +14,7 @@ export const translations = {
     personaSeniorDesc: 'Falo com a Cora para registar a minha tensão e glicose, receber lembretes de medicação e ouvir dicas de saúde personalizadas.',
     personaAdultTitle: 'Gestor de saúde',
     personaAdultSubtitle: 'Controlo e acompanhamento.',
-    personaAdultDesc: 'Gero os meus dados, marco consultas e acompanho quem mais gosto com alertas e notificações em tempo real.',
+    personaAdultDesc: 'Giro os meus dados, marco consultas e acompanho quem mais gosto com alertas e notificações em tempo real.',
     personaClinicalTitle: 'Acesso Clínico',
     personaClinicalSubtitle: 'Sou profissional de saúde.',
     personaClinicalDesc: 'Analiso o histórico e os sinais vitais partilhados pelos meus pacientes para um acompanhamento preventivo.',
