@@ -310,4 +310,6 @@ body {
     box-shadow: none;
   }
   .phone-notch { display: none; }
+  /* No telemóvel real, esconder a status bar falsa — o sistema já mostra a real */
+  .status-bar { display: none; }
 }
