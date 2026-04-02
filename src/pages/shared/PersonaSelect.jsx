@@ -6,19 +6,17 @@ export default function PersonaSelect({ onSelect }) {
       id: 'senior',
       icon: '👵',
       title: 'Sou um sénior',
-      subtitle: 'Quero falar com a minha assistente',
-      description: 'Saúde pessoal — registo de tensão, glicose e medicação com ajuda de voz.',
-      name: 'Dona Rosa',
+      subtitle: 'Quero usar a minha voz.',
+      description: 'Registo a minha tensão, glicose e medicação de forma simples, apenas a falar com a CoreHealth.',
       color: '#A63F52',
       bg: '#FBF0F2',
     },
     {
       id: 'adult',
-      icon: '👨‍💻',
-      title: 'Cuido de alguém',
-      subtitle: 'Giro a minha saúde e acompanho outra pessoa à distância',
-      description: 'Gere os teus próprios dados de saúde e monitoriza um familiar remotamente, tudo numa só app.',
-      name: 'Ricardo',
+      icon: '🧑',
+      title: 'Gestor de saúde',
+      subtitle: 'Individual ou em família.',
+      description: 'Monitorizo os meus dados e, se desejar, emparelho com outros para acompanhar a saúde de familiares ou amigos.',
       color: '#590212',
       bg: '#FBF0F2',
     },
@@ -117,38 +115,50 @@ export default function PersonaSelect({ onSelect }) {
           </button>
         ))}
 
-        {/* Professional option */}
+        {/* Professional option — Em breve */}
         <button
           style={{
             width: '100%',
             background: 'transparent',
             border: '1.5px dashed var(--border)',
             borderRadius: 20,
-            padding: '16px 20px',
+            padding: '18px 20px',
             cursor: 'not-allowed',
             textAlign: 'left',
             display: 'flex',
             gap: 16,
-            alignItems: 'center',
-            opacity: 0.6,
+            alignItems: 'flex-start',
           }}
           disabled
         >
           <div style={{
-            width: 44,
-            height: 44,
-            borderRadius: 12,
+            width: 56,
+            height: 56,
+            borderRadius: 16,
             background: 'var(--cream)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            fontSize: 22,
+            fontSize: 26,
+            flexShrink: 0,
+            opacity: 0.5,
           }}>
             🩺
           </div>
-          <div>
-            <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--ink)' }}>Sou profissional de saúde</div>
-            <div style={{ fontSize: 11, color: 'var(--muted)', marginTop: 2 }}>Em breve — Dra. Inês</div>
+          <div style={{ flex: 1 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 3 }}>
+              <span style={{ fontSize: 15, fontWeight: 700, color: 'var(--muted)' }}>Acesso Clínico</span>
+              <span style={{
+                fontSize: 10, fontWeight: 700, padding: '2px 8px', borderRadius: 20,
+                background: 'var(--cream)', color: 'var(--wine-md)', letterSpacing: '0.3px',
+              }}>EM BREVE</span>
+            </div>
+            <div style={{ fontSize: 12, fontWeight: 500, color: 'var(--muted)', marginBottom: 4 }}>
+              Sou profissional de saúde.
+            </div>
+            <div style={{ fontSize: 11, color: 'var(--muted)', lineHeight: 1.5, opacity: 0.8 }}>
+              Acompanho o histórico e os dados partilhados pelos meus pacientes de forma integrada.
+            </div>
           </div>
         </button>
       </div>
