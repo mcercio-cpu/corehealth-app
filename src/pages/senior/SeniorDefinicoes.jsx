@@ -110,7 +110,7 @@ export default function SeniorDefinicoes({ navigate, onLogout }) {
             <span style={{ fontSize: 22 }}>ℹ️</span>
             <div>
               <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--ink)' }}>CoreHealth v1.0</div>
-              <div style={{ fontSize: 11, color: 'var(--muted)', marginTop: 2 }}>"A Saúde Não Deve Ser um Privilégio"</div>
+              <div style={{ fontSize: 11, color: 'var(--muted)', marginTop: 2 }}>Saúde para todos.</div>
             </div>
           </div>
         </div>

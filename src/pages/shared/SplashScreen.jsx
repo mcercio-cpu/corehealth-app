@@ -53,7 +53,7 @@ export default function SplashScreen({ onFinish }) {
           fontWeight: 400,
           letterSpacing: '0.3px',
         }}>
-          A Saúde Não Deve Ser um Privilégio
+          Saúde para todos.
         </div>
       </div>
 

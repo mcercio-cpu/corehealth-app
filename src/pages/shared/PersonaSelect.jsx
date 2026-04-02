@@ -156,7 +156,7 @@ export default function PersonaSelect({ onSelect }) {
       {/* Footer */}
       <div style={{ padding: '0 20px 32px', textAlign: 'center' }}>
         <div style={{ fontSize: 11, color: 'var(--muted)' }}>
-          "A Saúde Não Deve Ser um Privilégio."
+          Saúde para todos.
         </div>
       </div>
     </div>
