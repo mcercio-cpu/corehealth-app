@@ -29,15 +29,6 @@ const alertas = [
     icon: '🏥',
     actions: ['Ver detalhes'],
   },
-  {
-    id: 'a4',
-    tipo: 'alert',
-    titulo: 'João sem registos há 3 dias',
-    descricao: 'O seu pai não registou tensão ou medicação desde segunda-feira.',
-    hora: 'Sábado',
-    icon: '🔔',
-    actions: ['Ligar ao Pai', 'Enviar lembrete'],
-  },
 ];
 
 const tipoStyle = {
@@ -54,7 +45,7 @@ export default function AdultAlertas({ navigate }) {
       <div style={{ padding: '8px 20px 14px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <div>
           <div style={{ fontSize: 20, fontWeight: 800, color: 'var(--ink)' }}>Alertas</div>
-          <div style={{ fontSize: 12, color: 'var(--muted)' }}>{alertas.length} notificações</div>
+          <div style={{ fontSize: 12, color: 'var(--muted)' }}>{alertas.filter(a => a.id).length} notificações</div>
         </div>
         <button style={{
           background: 'transparent', border: 'none', fontSize: 13, fontWeight: 600,

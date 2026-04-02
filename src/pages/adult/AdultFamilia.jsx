@@ -28,28 +28,6 @@ export default function AdultFamilia({ navigate }) {
         { text: 'Verificar se está a descansar bem', icon: '😴' },
       ],
     },
-    {
-      id: 'joao',
-      name: 'João Santos',
-      relation: 'Pai',
-      age: 73,
-      avatar: '👴',
-      lastUpdate: 'há 3 dias',
-      status: 'alert',
-      statusText: '! Sem registos recentes',
-      data: {
-        tensao: '142/92 mmHg',
-        tensaoStatus: 'warning',
-        glicose: '—',
-        glicoseStatus: 'muted',
-        medicacao: 'Não registado (2 dias)',
-        medicacaoStatus: 'alert',
-      },
-      suggestions: [
-        { text: 'Enviar lembrete ao pai para registar dados', icon: '🔔' },
-        { text: 'Ligar para verificar se está bem', icon: '📞' },
-      ],
-    },
   ];
 
   const statusColor = {
