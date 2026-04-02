@@ -27,8 +27,10 @@ export default function SplashScreen({ onFinish }) {
             width: 100,
             height: 100,
             borderRadius: 24,
-            filter: 'brightness(0) invert(1)',
+            background: '#fff',
+            padding: 6,
             animation: 'pulse 2s ease-in-out infinite',
+            boxShadow: '0 8px 32px rgba(0,0,0,0.2)',
           }}
         />
       </div>

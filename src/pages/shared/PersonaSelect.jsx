@@ -42,10 +42,12 @@ export default function PersonaSelect({ onSelect }) {
         gap: 14,
       }}>
         <img src={logoCrimson} alt="CoreHealth" style={{
-          width: 56,
-          height: 56,
-          borderRadius: 14,
-          filter: 'brightness(0) invert(1)',
+          width: 60,
+          height: 60,
+          borderRadius: 16,
+          background: '#fff',
+          padding: 5,
+          boxShadow: '0 4px 16px rgba(0,0,0,0.2)',
         }} />
         <div style={{ textAlign: 'center' }}>
           <div style={{ fontSize: 24, fontWeight: 800, color: '#fff', lineHeight: 1.2 }}>Bem-vindo!</div>
