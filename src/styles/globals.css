@@ -113,7 +113,7 @@ body {
   overflow-y: auto;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
-  padding-bottom: 80px;
+  padding-bottom: 16px;
 }
 .scroll-area::-webkit-scrollbar { display: none; }
 
@@ -130,8 +130,7 @@ body {
 
 /* ── BOTTOM NAV ── */
 .bottom-nav {
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
+  flex-shrink: 0;
   height: 76px;
   background: var(--cream-lt);
   border-top: 1px solid var(--border);
