@@ -6,18 +6,16 @@ export default function SplashScreen({ onFinish, lang, setLang }) {
   const [showLang, setShowLang] = useState(false);
 
   useEffect(() => {
-    // Reveal language toggle after 1s
-    const revealTimer = setTimeout(() => setShowLang(true), 1000);
-    // Auto-advance after 2.8s
-    const autoTimer = setTimeout(() => onFinish(selected), 2800);
-    return () => { clearTimeout(revealTimer); clearTimeout(autoTimer); };
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+    // Reveal language toggle after 1.2s, then wait for user to choose
+    const revealTimer = setTimeout(() => setShowLang(true), 1200);
+    return () => clearTimeout(revealTimer);
+  }, []);
 
   const handleSelect = (l) => {
     setSelected(l);
     setLang(l);
     // Small delay so user sees the highlight before advancing
-    setTimeout(() => onFinish(l), 420);
+    setTimeout(() => onFinish(l), 400);
   };
 
   return (
