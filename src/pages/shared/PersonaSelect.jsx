@@ -15,7 +15,7 @@ export default function PersonaSelect({ onSelect }) {
     {
       id: 'adult',
       icon: '👨‍💻',
-      title: 'Cuido de alguém?',
+      title: 'Cuido de alguém',
       subtitle: 'Giro a minha saúde e acompanho outra pessoa à distância',
       description: 'Gere os teus próprios dados de saúde e monitoriza um familiar remotamente, tudo numa só app.',
       name: 'Ricardo',
