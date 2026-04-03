@@ -13,12 +13,12 @@ export default function AdultPerfil({ navigate, onLogout, lang = 'pt' }) {
       <StatusBar />
 
       <div style={{ padding: '8px 20px 14px', display: 'flex', alignItems: 'center', gap: 12 }}>
-        <MiniLogo navigate={navigate} />
         <div style={{ fontSize: 20, fontWeight: 800, color: 'var(--ink)', flex: 1 }}>{T.adultPerfilTitle}</div>
         <button style={{
           background: 'var(--cream)', border: 'none', borderRadius: 12,
           padding: '8px 14px', fontSize: 13, fontWeight: 600, color: 'var(--wine-md)', cursor: 'pointer',
         }}>{T.adultPerfilEdit}</button>
+        <MiniLogo navigate={navigate} />
       </div>
 
       <div className="scroll-area">

@@ -11,7 +11,6 @@ export default function AdultConsultas({ navigate, lang = 'pt' }) {
     <div className="screen">
       <StatusBar />
       <div style={{ padding: '8px 20px 14px', display: 'flex', alignItems: 'center', gap: 12 }}>
-        <MiniLogo navigate={navigate} />
         <div style={{ flex: 1 }}>
           <div style={{ fontSize: 20, fontWeight: 800, color: 'var(--ink)' }}>{T.adultConsultasTitle}</div>
           <div style={{ fontSize: 12, color: 'var(--muted)' }}>{T.adultConsultasSub}</div>
@@ -22,6 +21,7 @@ export default function AdultConsultas({ navigate, lang = 'pt' }) {
         }}>
           {T.adultConsultasBook}
         </button>
+        <MiniLogo navigate={navigate} />
       </div>
 
       <div className="scroll-area">

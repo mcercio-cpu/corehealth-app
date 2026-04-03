@@ -1,7 +1,8 @@
+import logoCrimson from '../../assets/logo-crimson.png';
 import StatusBar from '../../components/StatusBar';
-import LogoHeader from '../../components/LogoHeader';
 import VoiceButton from '../../components/VoiceButton';
 import BottomNavSenior from '../../components/BottomNavSenior';
+import MiniLogo from '../../components/MiniLogo';
 import { rosaBiometrics } from '../../data/mockBiometrics';
 import { translations } from '../../data/translations';
 
@@ -13,12 +14,19 @@ export default function SeniorHome({ navigate, lang = 'pt' }) {
   return (
     <div className="screen">
       <StatusBar />
-      <LogoHeader
-        title="CoreHealth"
-        subtitle={T.seniorGreeting}
-        action={{ icon: '⚙️', onClick: () => navigate('definicoes') }}
-        onLogoClick={() => navigate('persona')}
-      />
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '8px 20px 16px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+          <img src={logoCrimson} alt="CoreHealth" style={{ width: 32, height: 32, borderRadius: 8 }} />
+          <div>
+            <div style={{ fontSize: 16, fontWeight: 700, color: 'var(--wine)', lineHeight: 1.2 }}>CoreHealth</div>
+            <div style={{ fontSize: 12, color: 'var(--muted)', marginTop: 1 }}>{T.seniorGreeting}</div>
+          </div>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+          <button onClick={() => navigate('definicoes')} style={{ background: 'transparent', border: 'none', fontSize: 22, cursor: 'pointer', padding: 4 }}>⚙️</button>
+          <MiniLogo navigate={navigate} />
+        </div>
+      </div>
 
       <div className="scroll-area">
         {/* Daily greeting card */}
