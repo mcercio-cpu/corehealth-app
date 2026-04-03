@@ -172,7 +172,7 @@ export const translations = {
     adultConsultDetail: 'Dr. João Machado · Terça, 4 Abr às 14:30',
     adultEcgTitle: 'Lembrete: Eletrocardiograma',
     adultEcgDetail: 'Clínica CUF Mértola · Hoje às 15:30',
-    adultCTA: '🤖 Aconselhar-me com a Core',
+    adultCTA: 'Aconselhar-me com a Core',
     adultMetrics: [
       { label: 'Glicose', unit: 'mg/dL' },
       { label: 'Tensão', unit: 'mmHg' },
@@ -420,7 +420,7 @@ export const translations = {
     adultConsultDetail: 'Dr. João Machado · Tuesday, Apr 4 at 14:30',
     adultEcgTitle: 'Reminder: Electrocardiogram',
     adultEcgDetail: 'CUF Mértola Clinic · Today at 15:30',
-    adultCTA: '🤖 Get advice from Core',
+    adultCTA: 'Get advice from Core',
     adultMetrics: [
       { label: 'Glucose', unit: 'mg/dL' },
       { label: 'Blood Pressure', unit: 'mmHg' },
