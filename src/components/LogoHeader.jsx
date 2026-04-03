@@ -1,6 +1,6 @@
 import logoCrimson from '../assets/logo-crimson.png';
 
-export default function LogoHeader({ title, subtitle, action, size = 'sm' }) {
+export default function LogoHeader({ title, subtitle, action, size = 'sm', onLogoClick }) {
   const logoSize = size === 'sm' ? 32 : 40;
 
   return (
@@ -10,7 +10,10 @@ export default function LogoHeader({ title, subtitle, action, size = 'sm' }) {
       justifyContent: 'space-between',
       padding: '8px 20px 16px',
     }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+      <div
+        style={{ display: 'flex', alignItems: 'center', gap: 10, cursor: onLogoClick ? 'pointer' : 'default' }}
+        onClick={onLogoClick}
+      >
         <img src={logoCrimson} alt="CoreHealth" style={{ width: logoSize, height: logoSize, borderRadius: 8 }} />
         <div>
           <div style={{ fontSize: size === 'sm' ? 16 : 20, fontWeight: 700, color: 'var(--wine)', lineHeight: 1.2 }}>

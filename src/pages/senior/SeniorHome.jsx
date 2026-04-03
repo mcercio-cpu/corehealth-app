@@ -17,6 +17,7 @@ export default function SeniorHome({ navigate, lang = 'pt' }) {
         title="CoreHealth"
         subtitle={T.seniorGreeting}
         action={{ icon: '⚙️', onClick: () => navigate('definicoes') }}
+        onLogoClick={() => navigate('persona')}
       />
 
       <div className="scroll-area">

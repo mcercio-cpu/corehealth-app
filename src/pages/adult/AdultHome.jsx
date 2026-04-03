@@ -1,6 +1,7 @@
 import StatusBar from '../../components/StatusBar';
 import MiniChart from '../../components/MiniChart';
 import BottomNavAdult from '../../components/BottomNavAdult';
+import MiniLogo from '../../components/MiniLogo';
 import { ricardoBiometrics } from '../../data/mockBiometrics';
 import { translations } from '../../data/translations';
 
@@ -20,9 +21,12 @@ export default function AdultHome({ navigate, lang = 'pt' }) {
       <StatusBar />
 
       <div style={{ padding: '6px 20px 14px', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-        <div>
-          <div style={{ fontSize: 22, fontWeight: 800, color: 'var(--ink)', lineHeight: 1.2 }}>{T.adultGreeting}</div>
-          <div style={{ fontSize: 13, color: 'var(--muted)', marginTop: 3 }}>{T.adultDate}</div>
+        <div style={{ display: 'flex', alignItems: 'flex-start', gap: 10 }}>
+          <MiniLogo navigate={navigate} />
+          <div>
+            <div style={{ fontSize: 22, fontWeight: 800, color: 'var(--ink)', lineHeight: 1.2 }}>{T.adultGreeting}</div>
+            <div style={{ fontSize: 13, color: 'var(--muted)', marginTop: 3 }}>{T.adultDate}</div>
+          </div>
         </div>
         <div style={{
           width: 40, height: 40, borderRadius: '50%', background: 'var(--wine)', color: '#fff',

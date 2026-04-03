@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import StatusBar from '../../components/StatusBar';
 import BottomNavSenior from '../../components/BottomNavSenior';
+import MiniLogo from '../../components/MiniLogo';
 import { translations } from '../../data/translations';
 
 export default function SeniorDados({ navigate, lang = 'pt' }) {
@@ -57,10 +58,11 @@ export default function SeniorDados({ navigate, lang = 'pt' }) {
 
       <div style={{ padding: '8px 20px 16px', display: 'flex', alignItems: 'center', gap: 12 }}>
         <button onClick={() => navigate('home')} style={{ background: 'transparent', border: 'none', fontSize: 22, cursor: 'pointer', color: 'var(--wine-md)' }}>←</button>
-        <div>
+        <div style={{ flex: 1 }}>
           <div style={{ fontSize: 20, fontWeight: 800, color: 'var(--ink)' }}>{T.seniorRegisterData}</div>
           <div style={{ fontSize: 12, color: 'var(--muted)' }}>{T.seniorDate}</div>
         </div>
+        <MiniLogo navigate={navigate} />
       </div>
 
       <div className="scroll-area" style={{ padding: '0 16px' }}>

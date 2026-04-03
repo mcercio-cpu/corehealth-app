@@ -2,6 +2,7 @@ import { useState } from 'react';
 import StatusBar from '../../components/StatusBar';
 import BottomNavAdult from '../../components/BottomNavAdult';
 import MiniChart from '../../components/MiniChart';
+import MiniLogo from '../../components/MiniLogo';
 import { rosaBiometrics } from '../../data/mockBiometrics';
 import { translations } from '../../data/translations';
 
@@ -70,12 +71,13 @@ export default function AdultFamilia({ navigate, lang = 'pt' }) {
     <div className="screen">
       <StatusBar />
       <div style={{ padding: '8px 20px 14px', display: 'flex', alignItems: 'center', gap: 12 }}>
-        <div>
+        <MiniLogo navigate={navigate} />
+        <div style={{ flex: 1 }}>
           <div style={{ fontSize: 20, fontWeight: 800, color: 'var(--ink)' }}>{T.adultFamilyTitle}</div>
           <div style={{ fontSize: 12, color: 'var(--muted)' }}>{T.adultFamilySub}</div>
         </div>
         <button style={{
-          marginLeft: 'auto', background: 'var(--cream)', border: 'none',
+          background: 'var(--cream)', border: 'none',
           borderRadius: 12, padding: '8px 14px', fontSize: 13, fontWeight: 600, color: 'var(--wine-md)', cursor: 'pointer',
         }}>
           {T.adultFamilyAdd}

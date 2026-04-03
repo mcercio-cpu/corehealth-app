@@ -1,5 +1,6 @@
 import StatusBar from '../../components/StatusBar';
 import BottomNavAdult from '../../components/BottomNavAdult';
+import MiniLogo from '../../components/MiniLogo';
 import { translations } from '../../data/translations';
 
 const tipoStyle = {
@@ -18,8 +19,9 @@ export default function AdultAlertas({ navigate, lang = 'pt' }) {
   return (
     <div className="screen">
       <StatusBar />
-      <div style={{ padding: '8px 20px 14px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <div>
+      <div style={{ padding: '8px 20px 14px', display: 'flex', alignItems: 'center', gap: 12 }}>
+        <MiniLogo navigate={navigate} />
+        <div style={{ flex: 1 }}>
           <div style={{ fontSize: 20, fontWeight: 800, color: 'var(--ink)' }}>{T.adultAlertasTitle}</div>
           <div style={{ fontSize: 12, color: 'var(--muted)' }}>{alertas.length} {lang === 'en' ? 'notifications' : 'notificações'}</div>
         </div>

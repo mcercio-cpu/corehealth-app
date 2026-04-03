@@ -1,5 +1,6 @@
 import StatusBar from '../../components/StatusBar';
 import BottomNavAdult from '../../components/BottomNavAdult';
+import MiniLogo from '../../components/MiniLogo';
 import { ricardoConsultas, ricardoExames } from '../../data/mockConsultas';
 import { translations } from '../../data/translations';
 
@@ -10,12 +11,13 @@ export default function AdultConsultas({ navigate, lang = 'pt' }) {
     <div className="screen">
       <StatusBar />
       <div style={{ padding: '8px 20px 14px', display: 'flex', alignItems: 'center', gap: 12 }}>
-        <div>
+        <MiniLogo navigate={navigate} />
+        <div style={{ flex: 1 }}>
           <div style={{ fontSize: 20, fontWeight: 800, color: 'var(--ink)' }}>{T.adultConsultasTitle}</div>
           <div style={{ fontSize: 12, color: 'var(--muted)' }}>{T.adultConsultasSub}</div>
         </div>
         <button style={{
-          marginLeft: 'auto', background: 'var(--wine-md)', border: 'none',
+          background: 'var(--wine-md)', border: 'none',
           borderRadius: 12, padding: '8px 14px', fontSize: 13, fontWeight: 700, color: '#fff', cursor: 'pointer',
         }}>
           {T.adultConsultasBook}
