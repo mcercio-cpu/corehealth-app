@@ -253,7 +253,7 @@ export default function AdultHome({ navigate, lang = 'pt' }) {
 
         {/* CTA — Talk to Core */}
         <div style={{ padding: '12px 16px 20px' }}>
-          <button onClick={() => navigate('home')} style={{
+          <button onClick={() => navigate('core')} style={{
             width: '100%', background: 'linear-gradient(135deg, #1a7a5a, #28a878)',
             color: '#fff', border: 'none', borderRadius: 18, padding: '18px',
             fontSize: 16, fontWeight: 700, cursor: 'pointer',

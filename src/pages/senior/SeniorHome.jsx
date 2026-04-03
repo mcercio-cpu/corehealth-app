@@ -1,6 +1,5 @@
 import logoCrimson from '../../assets/logo-crimson.png';
 import StatusBar from '../../components/StatusBar';
-import VoiceButton from '../../components/VoiceButton';
 import BottomNavSenior from '../../components/BottomNavSenior';
 import { rosaBiometrics } from '../../data/mockBiometrics';
 import { translations } from '../../data/translations';
@@ -38,35 +37,30 @@ export default function SeniorHome({ navigate, lang = 'pt' }) {
           </div>
         </div>
 
-        {/* CENTRAL VOICE BUTTON */}
+        {/* CENTRAL VOICE BUTTON — single round green */}
         <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          margin: '8px 0 24px',
-          padding: '20px 0',
+          display: 'flex', flexDirection: 'column', alignItems: 'center',
+          margin: '8px 0 24px', padding: '20px 0',
         }}>
-          <div style={{ fontSize: 15, fontWeight: 600, color: 'var(--muted)', marginBottom: 20 }}>
+          <div style={{ fontSize: 15, fontWeight: 600, color: 'var(--muted)', marginBottom: 24 }}>
             {T.seniorVoicePrompt}
           </div>
-          <VoiceButton size="xl" label={lang === 'en' ? 'Talk to Me' : 'Falar Comigo'} onPress={() => navigate('voz')} />
           <button
             onClick={() => navigate('voz')}
             style={{
-              marginTop: 20,
-              background: 'var(--wine-md)',
-              color: '#fff',
-              border: 'none',
-              borderRadius: 50,
-              padding: '14px 32px',
-              fontSize: 16,
-              fontWeight: 700,
-              cursor: 'pointer',
-              boxShadow: '0 4px 16px rgba(166,63,82,0.4)',
+              width: 130, height: 130, borderRadius: '50%',
+              background: 'linear-gradient(135deg, #1a7a5a, #28a878)',
+              border: 'none', cursor: 'pointer',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              fontSize: 48,
+              boxShadow: '0 8px 32px rgba(40,168,120,0.45)',
             }}
           >
-            {T.seniorStartTalking}
+            🎙️
           </button>
+          <div style={{ marginTop: 14, fontSize: 17, fontWeight: 700, color: '#1a7a5a' }}>
+            {lang === 'en' ? 'Talk to Me' : 'Fale Comigo'}
+          </div>
         </div>
 
         {/* Quick actions */}

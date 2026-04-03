@@ -12,6 +12,7 @@ import SeniorHistorico from './pages/senior/SeniorHistorico';
 import SeniorMedicamentos from './pages/senior/SeniorMedicamentos';
 import SeniorDefinicoes from './pages/senior/SeniorDefinicoes';
 import SeniorVoiceFlow from './pages/senior/SeniorVoiceFlow';
+import VoiceAI from './pages/shared/VoiceAI';
 
 // Adult (Ricardo) screens
 import AdultHome from './pages/adult/AdultHome';
@@ -61,13 +62,14 @@ export default function App() {
         case 'historico':    return <SeniorHistorico {...props} />;
         case 'medicamentos': return <SeniorMedicamentos {...props} />;
         case 'definicoes':   return <SeniorDefinicoes {...props} />;
-        case 'voz':          return <SeniorVoiceFlow {...props} />;
+        case 'voz':          return <VoiceAI {...props} persona="senior" />;
         default:             return <SeniorHome {...props} />;
       }
     }
 
     if (appState === 'adult') {
       switch (screen) {
+        case 'core':      return <VoiceAI {...props} persona="adult" />;
         case 'familia':   return <AdultFamilia {...props} />;
         case 'consultas': return <AdultConsultas {...props} />;
         case 'alertas':   return <AdultAlertas {...props} />;
