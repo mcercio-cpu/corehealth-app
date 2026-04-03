@@ -251,51 +251,13 @@ export default function AdultHome({ navigate, lang = 'pt' }) {
           </button>
         </div>
 
-        {/* Recommendations */}
-        <div className="section-title" style={{ marginTop: 8 }}>{T.adultRecommendations}</div>
-        <div style={{ padding: '0 16px', display: 'flex', flexDirection: 'column', gap: 8 }}>
-          {[{ icon: '✅', text: T.adultRec1 }, { icon: '🚶', text: T.adultRec2 }].map((rec, i) => (
-            <div key={i} style={{
-              background: '#fff', borderRadius: 16, padding: '12px 14px',
-              border: '1px solid var(--border)', display: 'flex', alignItems: 'center', gap: 12,
-            }}>
-              <span style={{ fontSize: 20 }}>{rec.icon}</span>
-              <span style={{ fontSize: 13, color: 'var(--ink)', flex: 1, lineHeight: 1.45 }}>{rec.text}</span>
-            </div>
-          ))}
-
-          <div style={{
-            background: 'linear-gradient(135deg, #590212, #A63F52)', borderRadius: 16, padding: '14px 16px',
-            display: 'flex', alignItems: 'center', gap: 12, boxShadow: '0 4px 16px rgba(89,2,18,0.25)',
-          }}>
-            <span style={{ fontSize: 24 }}>🏥</span>
-            <div style={{ flex: 1 }}>
-              <div style={{ fontSize: 13, fontWeight: 700, color: '#fff' }}>{T.adultConsultCard}</div>
-              <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.8)', marginTop: 2 }}>{T.adultConsultDetail}</div>
-            </div>
-            <span style={{ fontSize: 11, fontWeight: 700, background: 'rgba(255,255,255,0.2)', color: '#fff', padding: '4px 10px', borderRadius: 20 }}>{T.adultDays}</span>
-          </div>
-
-          <div style={{
-            background: '#fff', borderRadius: 16, padding: '14px 16px',
-            border: '1.5px solid #f5c87a', display: 'flex', alignItems: 'center', gap: 12,
-          }}>
-            <span style={{ fontSize: 24 }}>🩺</span>
-            <div style={{ flex: 1 }}>
-              <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--ink)' }}>{T.adultEcgTitle}</div>
-              <div style={{ fontSize: 12, color: 'var(--muted)', marginTop: 2 }}>{T.adultEcgDetail}</div>
-            </div>
-            <span style={{ fontSize: 11, fontWeight: 700, background: '#fff3e0', color: '#b06000', padding: '4px 10px', borderRadius: 20 }}>{T.adultToday}</span>
-          </div>
-        </div>
-
-        {/* CTA */}
-        <div style={{ padding: '18px 16px 16px' }}>
+        {/* CTA — Talk to Core */}
+        <div style={{ padding: '12px 16px 20px' }}>
           <button onClick={() => navigate('home')} style={{
-            width: '100%', background: 'linear-gradient(135deg, #590212, #A63F52)',
+            width: '100%', background: 'linear-gradient(135deg, #1a7a5a, #28a878)',
             color: '#fff', border: 'none', borderRadius: 18, padding: '18px',
             fontSize: 16, fontWeight: 700, cursor: 'pointer',
-            boxShadow: '0 4px 16px rgba(89,2,18,0.35)',
+            boxShadow: '0 4px 16px rgba(40,168,120,0.4)',
           }}>
             {T.adultCTA}
           </button>
