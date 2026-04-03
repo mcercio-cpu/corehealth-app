@@ -9,6 +9,8 @@ export const translations = {
     // PersonaSelect
     welcome: 'Bem-vindo!',
     welcomeSub: 'Como vamos usar a CoreHealth?',
+    personaSectionTitle: 'Escolhe o teu perfil',
+    personaSwitchNote: '💡 Para mudar de utilizador, sai da conta no menu das definições.',
     personaSeniorTitle: 'Sou um sénior',
     personaSeniorSubtitle: 'Uso apenas a minha voz.',
     personaSeniorDesc: 'Falo com a Cora para registar a minha tensão e glicose, receber lembretes de medicação e ouvir dicas de saúde personalizadas.',
@@ -255,6 +257,8 @@ export const translations = {
     // PersonaSelect
     welcome: 'Welcome!',
     welcomeSub: 'How will you use CoreHealth?',
+    personaSectionTitle: 'Choose your profile',
+    personaSwitchNote: '💡 To switch user, sign out from the settings menu.',
     personaSeniorTitle: 'I am a senior',
     personaSeniorSubtitle: 'I only use my voice.',
     personaSeniorDesc: 'I talk to Cora to log my blood pressure and glucose, receive medication reminders, and hear personalised health tips.',

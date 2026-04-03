@@ -59,7 +59,10 @@ export default function PersonaSelect({ onSelect, lang = 'pt' }) {
       </div>
 
       {/* Cards */}
-      <div style={{ padding: '28px 20px', display: 'flex', flexDirection: 'column', gap: 14, flex: 1 }}>
+      <div style={{ padding: '20px 20px 0', display: 'flex', flexDirection: 'column', gap: 14, flex: 1 }}>
+        <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--muted)', textTransform: 'uppercase', letterSpacing: '0.6px', paddingLeft: 4 }}>
+          {T.personaSectionTitle}
+        </div>
         {personas.map(p => (
           <button
             key={p.id}
@@ -166,8 +169,22 @@ export default function PersonaSelect({ onSelect, lang = 'pt' }) {
         </button>
       </div>
 
+      {/* Switch note */}
+      <div style={{ padding: '8px 20px 16px' }}>
+        <div style={{
+          background: 'var(--cream)',
+          borderRadius: 14,
+          padding: '12px 16px',
+          border: '1px solid var(--border)',
+        }}>
+          <div style={{ fontSize: 12, color: 'var(--muted)', lineHeight: 1.5, textAlign: 'center' }}>
+            {T.personaSwitchNote}
+          </div>
+        </div>
+      </div>
+
       {/* Footer */}
-      <div style={{ padding: '0 20px 32px', textAlign: 'center' }}>
+      <div style={{ padding: '0 20px 28px', textAlign: 'center' }}>
         <div style={{ fontSize: 11, color: 'var(--muted)' }}>
           {T.tagline}
         </div>
