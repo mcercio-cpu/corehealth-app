@@ -21,17 +21,17 @@ export default function AdultHome({ navigate, lang = 'pt' }) {
       <StatusBar />
 
       <div style={{ padding: '6px 20px 14px', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-        <div>
-          <div style={{ fontSize: 22, fontWeight: 800, color: 'var(--ink)', lineHeight: 1.2 }}>{T.adultGreeting}</div>
-          <div style={{ fontSize: 13, color: 'var(--muted)', marginTop: 3 }}>{T.adultDate}</div>
-        </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-          <div style={{
-            width: 40, height: 40, borderRadius: '50%', background: 'var(--wine)', color: '#fff',
-            display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, fontWeight: 700,
-          }}>RS</div>
           <MiniLogo navigate={navigate} />
+          <div>
+            <div style={{ fontSize: 22, fontWeight: 800, color: 'var(--ink)', lineHeight: 1.2 }}>{T.adultGreeting}</div>
+            <div style={{ fontSize: 13, color: 'var(--muted)', marginTop: 3 }}>{T.adultDate}</div>
+          </div>
         </div>
+        <div style={{
+          width: 40, height: 40, borderRadius: '50%', background: 'var(--wine)', color: '#fff',
+          display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, fontWeight: 700,
+        }}>RS</div>
       </div>
 
       <div className="scroll-area">

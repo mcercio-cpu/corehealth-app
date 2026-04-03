@@ -2,7 +2,6 @@ import logoCrimson from '../../assets/logo-crimson.png';
 import StatusBar from '../../components/StatusBar';
 import VoiceButton from '../../components/VoiceButton';
 import BottomNavSenior from '../../components/BottomNavSenior';
-import MiniLogo from '../../components/MiniLogo';
 import { rosaBiometrics } from '../../data/mockBiometrics';
 import { translations } from '../../data/translations';
 
@@ -16,7 +15,7 @@ export default function SeniorHome({ navigate, lang = 'pt' }) {
       <StatusBar />
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '8px 20px 16px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-          <img src={logoCrimson} alt="CoreHealth" style={{ width: 32, height: 32, borderRadius: 8 }} />
+          <img src={logoCrimson} alt="CoreHealth" onClick={() => navigate('persona')} style={{ width: 32, height: 32, borderRadius: 8, cursor: 'pointer' }} title="Mudar de perfil" />
           <div>
             <div style={{ fontSize: 16, fontWeight: 700, color: 'var(--wine)', lineHeight: 1.2 }}>CoreHealth</div>
             <div style={{ fontSize: 12, color: 'var(--muted)', marginTop: 1 }}>{T.seniorGreeting}</div>
@@ -24,7 +23,6 @@ export default function SeniorHome({ navigate, lang = 'pt' }) {
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
           <button onClick={() => navigate('definicoes')} style={{ background: 'transparent', border: 'none', fontSize: 22, cursor: 'pointer', padding: 4 }}>⚙️</button>
-          <MiniLogo navigate={navigate} />
         </div>
       </div>
 

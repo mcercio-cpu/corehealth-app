@@ -23,11 +23,11 @@ export default function SeniorMedicamentos({ navigate, lang = 'pt' }) {
 
       <div style={{ padding: '8px 20px 16px', display: 'flex', alignItems: 'center', gap: 12 }}>
         <button onClick={() => navigate('home')} style={{ background: 'transparent', border: 'none', fontSize: 22, cursor: 'pointer', color: 'var(--wine-md)' }}>←</button>
+        <MiniLogo navigate={navigate} />
         <div style={{ flex: 1 }}>
           <div style={{ fontSize: 20, fontWeight: 800, color: 'var(--ink)' }}>{T.seniorMedTitle}</div>
           <div style={{ fontSize: 12, color: 'var(--muted)' }}>{T.seniorMedDate}</div>
         </div>
-        <MiniLogo navigate={navigate} />
       </div>
 
       <div className="scroll-area">

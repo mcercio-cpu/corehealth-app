@@ -71,6 +71,7 @@ export default function AdultFamilia({ navigate, lang = 'pt' }) {
     <div className="screen">
       <StatusBar />
       <div style={{ padding: '8px 20px 14px', display: 'flex', alignItems: 'center', gap: 12 }}>
+        <MiniLogo navigate={navigate} />
         <div style={{ flex: 1 }}>
           <div style={{ fontSize: 20, fontWeight: 800, color: 'var(--ink)' }}>{T.adultFamilyTitle}</div>
           <div style={{ fontSize: 12, color: 'var(--muted)' }}>{T.adultFamilySub}</div>
@@ -81,7 +82,6 @@ export default function AdultFamilia({ navigate, lang = 'pt' }) {
         }}>
           {T.adultFamilyAdd}
         </button>
-        <MiniLogo navigate={navigate} />
       </div>
 
       <div className="scroll-area">

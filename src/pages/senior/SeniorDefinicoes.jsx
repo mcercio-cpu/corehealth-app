@@ -17,8 +17,8 @@ export default function SeniorDefinicoes({ navigate, onLogout, lang = 'pt' }) {
 
       <div style={{ padding: '8px 20px 16px', display: 'flex', alignItems: 'center', gap: 12 }}>
         <button onClick={() => navigate('home')} style={{ background: 'transparent', border: 'none', fontSize: 22, cursor: 'pointer', color: 'var(--wine-md)' }}>←</button>
-        <div style={{ fontSize: 20, fontWeight: 800, color: 'var(--ink)', flex: 1 }}>{T.seniorSettingsTitle}</div>
         <MiniLogo navigate={navigate} />
+        <div style={{ fontSize: 20, fontWeight: 800, color: 'var(--ink)', flex: 1 }}>{T.seniorSettingsTitle}</div>
       </div>
 
       <div className="scroll-area">
